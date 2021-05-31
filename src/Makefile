@@ -5,6 +5,8 @@ LDPARAMS = -melf_i386
 
 objects = loader.o kernel.o
 
+all: clean
+
 %.o: %.cpp
 	gcc $(GCCPARAMS) -c -o $@ $<
 
@@ -29,15 +31,11 @@ Kernel.iso: Kernel.bin
 	grub-mkrescue --output=builds/Kernel.iso iso
 	rm -rf iso
 
-clean: Kernel.bin $(objects)
+clean: Kernel.bin $(objects) Kernel.iso
 	rm -rf $< $(objects)
-	rm -rf iso/
+	rm -rf iso
+	clear
 
 RemoveBuilds: builds/
 	rm -rf $<
 	mkdir builds
-
-FullReset: Kernel.iso
-	rm -rf iso
-	rm -rf Kernel.bin $(objects)
-	clear
