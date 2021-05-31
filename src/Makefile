@@ -11,8 +11,33 @@ objects = loader.o kernel.o
 %.o: %.s
 	as $(ASPARAMS) -o $@ $<
 
-mykernel.bin: linker.ld $(objects)
+Kernel.bin: linker.ld $(objects)
 	ld $(LDPARAMS) -T $< -o $@ $(objects)
 
-install: mykernel.bin
-	sudo cp $< /boot/mykernel.bin
+Kernel.iso: Kernel.bin
+	mkdir iso
+	mkdir iso/boot
+	mkdir iso/boot/grub
+	cp Kernel.bin iso/boot/Kernel.bin
+	echo 'set timeout=0'                      > iso/boot/grub/grub.cfg
+	echo 'set default=0'                     >> iso/boot/grub/grub.cfg
+	echo ''                                  >> iso/boot/grub/grub.cfg
+	echo 'menuentry "Drishti OS" {' >> iso/boot/grub/grub.cfg
+	echo '  multiboot /boot/Kernel.bin'    >> iso/boot/grub/grub.cfg
+	echo '  boot'                            >> iso/boot/grub/grub.cfg
+	echo '}'                                 >> iso/boot/grub/grub.cfg
+	grub-mkrescue --output=builds/Kernel.iso iso
+	rm -rf iso
+
+clean: Kernel.bin $(objects)
+	rm -rf $< $(objects)
+	rm -rf iso/
+
+RemoveBuilds: builds/
+	rm -rf $<
+	mkdir builds
+
+FullReset: Kernel.iso
+	rm -rf iso
+	rm -rf Kernel.bin $(objects)
+	clear
