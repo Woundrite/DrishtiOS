@@ -1,4 +1,5 @@
-#include "include/types.hpp"
+#include "include/types.h"
+#include "includes/gdt.h"
 
 void printf(char* str) {
     uint16_t* VideoMemory = (uint16_t*)0xb8000;
@@ -11,6 +12,9 @@ typedef void (*constructor)();
 extern "C" constructor start_ctors;
 extern "C" constructor end_ctors;
 extern "C" void callConstructors() {
+
+    GlobalDescriptorTable gdt;
+
     for(constructor* i = &start_ctors; i != &end_ctors; i++)
         (*i)();
 }
