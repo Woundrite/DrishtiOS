@@ -1,7 +1,7 @@
 #include "includes/types.h"
 #include "includes/gdt.h"
 #include "includes/port.h"
-
+#include "includes/interrupts.h"
 void printf(char* str) {
     uint16_t* VideoMemory = (uint16_t*)0xb8000;
 
@@ -51,6 +51,9 @@ extern "C" void KernelBoot(void* multiboot_structure, uint32_t BootIdentifier) {
     printf("\nNew Line Print Statement");
 
     GlobalDescriptorTable gdt;
+    InterruptManager Interrupts(&gdt);
+
+    Interrupts.Activate();
 
     while(1);
 }
