@@ -39,10 +39,10 @@ int_bottom:
     call _ZN16InterruptManager15HandleInterruptEhj
     movl %eax, %esp
 
-    pop %gs
-    pop %fs
-    pop %es
-    pop %ds
+    popl %gs
+    popl %fs
+    popl %es
+    popl %ds
     popa
 
 
