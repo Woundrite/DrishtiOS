@@ -5,7 +5,7 @@
 .section .text
 
 .extern _ZN16InterruptManager15HandleInterruptEhj
-
+.global _ZN16InterruptManager22IgnoreInterruptRequestEv
 
 .macro HandleException num
 .global _ZN16InterruptManager19HandleException\num\()Ev
@@ -55,7 +55,7 @@ int_bottom:
     pop %ds
     popa
 
-.global _ZN16InterruptManager22IgnoreInterruptRequestEv
+
 _ZN16InterruptManager22IgnoreInterruptRequestEv:
 
     iret
