@@ -45,8 +45,7 @@ extern "C" void callConstructors() {
 
 extern "C" void KernelBoot(void* multiboot_structure, uint32_t BootIdentifier) {
     printf("Hello world!");
-    printf("\nNew Line Print Statement");
-
+    
     GlobalDescriptorTable gdt;
     InterruptManager Interrupts(&gdt);
 
