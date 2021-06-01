@@ -3,9 +3,9 @@ GCCPARAMS = -m32 -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-excep
 ASPARAMS = --32
 LDPARAMS = -melf_i386
 
-objects = loader.o gdt.o kernel.o
+objects = loader.o gdt.o port.o kernel.o
 
-all: clean
+all: main
 
 %.o: %.cpp
 	gcc $(GCCPARAMS) -c -o $@ $<
@@ -31,7 +31,12 @@ Kernel.iso: Kernel.bin
 	grub-mkrescue --output=builds/Kernel.iso iso
 	rm -rf iso
 
-clean: Kernel.bin $(objects) Kernel.iso
+clean:
+	rm -rf $< $(objects)
+	rm -rf iso
+	clear
+
+main: Kernel.bin $(objects) Kernel.iso
 	rm -rf $< $(objects)
 	rm -rf iso
 	clear
