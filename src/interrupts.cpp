@@ -75,5 +75,12 @@ uint32_t InterruptManager::HandleInterrupt(uint8_t InterruptNumber, uint32_t esp
 
 uint32_t InterruptManager::MainHandleInterrupt(uint8_t InterruptNumber, uint32_t esp){
     printf("INTERRUPT!!");
+
+    if(0x20 <= InterruptNumber && InterruptNumber < 0x30){
+        picMasterCommand.Write(0x20);
+        if(0x28 <= InterruptNumber)
+        picSlaveCommand.Write(0x20);
+    }
+
     return esp;
 }
