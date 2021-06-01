@@ -2,6 +2,26 @@
 
 void printf(char* str);
 
+
+
+
+
+InterruptHandler::InterruptHandler(uint8_t InterruptNumber, InterruptManager* interruptManager){
+    this->InterruptNumber = InterruptNumber;
+    this->interruptManager = interruptManager;
+    interruptManager->handlers[InterruptNumber] = this;
+}
+
+InterruptHandler::~InterruptHandler(){
+    if(interruptManager->handlers[InterruptNumber] == this)
+        interruptManager->handlers[InterruptNumber] = 0;
+}
+
+uint32_t InterruptHandler::HandleInterrupt(uint32_t esp){
+    return esp;
+}
+
+
 InterruptManager::GateDescriptor InterruptManager::InterruptDescriptorTable[256];
 
 InterruptManager* InterruptManager::ActiveInterruptManager = 0;
@@ -21,9 +41,11 @@ InterruptManager::InterruptManager(GlobalDescriptorTable* GDT): picMasterCommand
     uint16_t CodeSegment = GDT->CodeSegmentSelector();
     const uint8_t IDT_INTERRUPT_GATE = 0xE;
 
-    for(uint16_t i = 0; i<256; i++)
+    for(uint16_t i = 0; i<256; i++){
+        handlers[i] = 0;
         SetInterruptDescriptorTableEntry(i, CodeSegment, &IgnoreInterruptRequest, 0, IDT_INTERRUPT_GATE);
-    
+    }
+
     SetInterruptDescriptorTableEntry(0x20, CodeSegment, &HandleInterruptRequest0x00, 0, IDT_INTERRUPT_GATE);
     SetInterruptDescriptorTableEntry(0x21, CodeSegment, &HandleInterruptRequest0x01, 0, IDT_INTERRUPT_GATE);
 
@@ -74,7 +96,21 @@ uint32_t InterruptManager::HandleInterrupt(uint8_t InterruptNumber, uint32_t esp
 }
 
 uint32_t InterruptManager::MainHandleInterrupt(uint8_t InterruptNumber, uint32_t esp){
-    printf("INTERRUPT!!");
+    if(handlers[InterruptNumber] != 0){
+        esp = handlers[InterruptNumber]->HandleInterrupt(esp);
+    } else if(InterruptNumber != 0x20){
+        char* foo = "UNHANDLED INTERRUPT 0x00";
+        char* hex = "0123456789ABCDEF";
+        foo[22] = hex[(InterruptNumber >> 4) & 0x0F];
+        foo[23] = hex[InterruptNumber & 0x0F];
+        printf(" ");
+        printf(foo);
+        printf(" ");
+    }
+    
+    if(InterruptNumber != 0x20){
+        printf(" INTERRUPT!! ");
+    }
 
     if(0x20 <= InterruptNumber && InterruptNumber < 0x30){
         picMasterCommand.Write(0x20);
