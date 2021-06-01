@@ -42,7 +42,7 @@ InterruptManager::InterruptManager(GlobalDescriptorTable* GDT): picMasterCommand
 
     InterruptDescriptorTablePointer IDT;
     IDT.size = 256 * sizeof(GateDescriptor) - 1;
-    IDT.base = (uint64_t)InterruptDescriptorTable;
+    IDT.base = (uint32_t)InterruptDescriptorTable;
     asm volatile("lidt %0" : : "m" (IDT));
 }
 
