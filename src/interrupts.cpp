@@ -13,7 +13,7 @@ void InterruptManager::SetInterruptDescriptorTableEntry(uint8_t interruptNumber,
     InterruptDescriptorTable[interruptNumber].GDT_CodeSegmentSelector = codeSegmentSelectorOffset;
     InterruptDescriptorTable[interruptNumber].access = IDT_DESC_PRESENT | DescriptorType | ((DescriptorPrevelageLevel&3) << 5);
     InterruptDescriptorTable[interruptNumber].reserved = 0;
-}
+}   
 
 InterruptManager::InterruptManager(GlobalDescriptorTable* GDT): picMasterCommand(0x20), picMasterData(0x21), picSlaveCommand(0xA0), picSlaveData(0xA1){
     uint16_t CodeSegment = GDT->CodeSegmentSelector();

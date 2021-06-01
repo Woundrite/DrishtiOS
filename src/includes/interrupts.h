@@ -20,7 +20,7 @@ class InterruptManager{
 
         struct InterruptDescriptorTablePointer{
             uint16_t size;
-            uint16_t base;
+            uint32_t base;
         }__attribute__((packed));
 
         static void SetInterruptDescriptorTableEntry(uint8_t interruptNumber, uint16_t codeSegmentSelectorOffset, void (*handler)(), uint8_t DescriptorPrevelageLevel, uint8_t DescriptorType);
