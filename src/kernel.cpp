@@ -1,4 +1,4 @@
-#include "include/types.h"
+#include "includes/types.h"
 #include "includes/gdt.h"
 
 void printf(char* str) {
