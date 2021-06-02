@@ -145,6 +145,7 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
             case 0x3A:
                 printf(" CAPSLOCK ");
                 break;
+            case 0x36:
             case 0x2A:
                 printf(" SHIFT ");
                 break;
@@ -234,6 +235,30 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
                 break;
             case 0x51:
                 printf(" PAGE_DOWN ");
+                break;
+            case 0x35:
+                printf(" //? ");
+                break;
+            case 0x34:
+                printf(" >/. ");
+                break;
+            case 0x33:
+                printf(" </, ");
+                break;
+            case 0x1A:
+                printf(" {/[ ");
+                break;
+            case 0x1B:
+                printf(" }/] ");
+                break;
+            case 0x2B:
+                printf(" |/\\ ");
+                break;
+            case 0x27:
+                printf(" :/;");
+                break;
+            case 0x28:
+                printf(" \"/\' ");
                 break;
             default:
                 char* foo = "KEYBOARD 0x00";
