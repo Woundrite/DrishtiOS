@@ -19,251 +19,399 @@ void printf(char*);
 uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
     uint8_t key = DataPort.Read();
 
-    if(key < 0x80){
-        switch(key){
-            case 0x45:
-            case 0xC5:
-            case 0xFA:
-                break;
-            case 0x1E:
+    static bool IsShiftPressed = false;
+    switch(key){
+        case 0x45: //Numlock
+        case 0xC5:
+        case 0xFA:
+            break;
+        case 0x1E:
+            if(IsShiftPressed)
                 printf("A");
-                break;
-            case 0x30:
+            else
+                printf("a");
+            break;
+        case 0x30:
+            if(IsShiftPressed)
                 printf("B");
-                break;
-            case 0x2E:
+            else
+                printf("b");
+            break;
+        case 0x2E:
+            if(IsShiftPressed)
                 printf("C");
-                break;
-            case 0x20:
+            else
+                printf("c");
+            break;
+        case 0x20:
+            if(IsShiftPressed)
                 printf("D");
-                break;
-            case 0x12:
+            else
+                printf("d");
+            break;
+        case 0x12:
+            if(IsShiftPressed)
                 printf("E");
-                break;
-            case 0x21:
+            else
+                printf("e");
+            break;
+        case 0x21:
+            if(IsShiftPressed)
                 printf("F");
-                break;
-            case 0x22:
+            else
+                printf("f");
+            break;
+        case 0x22:
+            if(IsShiftPressed)
                 printf("G");
-                break;
-            case 0x23:
+            else
+                printf("g");
+            break;
+        case 0x23:
+            if(IsShiftPressed)
                 printf("H");
-                break;
-            case 0x17:
+            else
+                printf("h");
+            break;
+        case 0x17:
+            if(IsShiftPressed)
                 printf("I");
-                break;
-            case 0x24:
+            else
+                printf("i");
+            break;
+        case 0x24:
+            if(IsShiftPressed)
                 printf("J");
-                break;
-            case 0x25:
+            else
+                printf("j");
+            break;
+        case 0x25:
+            if(IsShiftPressed)
                 printf("K");
-                break;
-            case 0x26:
+            else
+                printf("k");
+            break;
+        case 0x26:
+            if(IsShiftPressed)
                 printf("L");
-                break;
-            case 0x32:
+            else
+                printf("l");
+            break;
+        case 0x32:
+            if(IsShiftPressed)
                 printf("M");
-                break;
-            case 0x31:
+            else
+                printf("m");
+            break;
+        case 0x31:
+            if(IsShiftPressed)
                 printf("N");
-                break;
-            case 0x18:
+            else
+                printf("n");
+            break;
+        case 0x18:
+            if(IsShiftPressed)
                 printf("O");
-                break;
-            case 0x19:
+            else
+                printf("o");
+            break;
+        case 0x19:
+            if(IsShiftPressed)
                 printf("P");
-                break;
-            case 0x10:
+            else
+                printf("p");
+            break;
+        case 0x10:
+            if(IsShiftPressed)
                 printf("Q");
-                break;
-            case 0x13:
+            else
+                printf("q");
+            break;
+        case 0x13:
+            if(IsShiftPressed)
                 printf("R");
-                break;
-            case 0x1F:
+            else
+                printf("r");
+            break;
+        case 0x1F:
+            if(IsShiftPressed)
                 printf("S");
-                break;
-            case 0x14:
+            else
+                printf("s");
+            break;
+        case 0x14:
+            if(IsShiftPressed)
                 printf("T");
-                break;
-            case 0x16:
+            else
+                printf("t");
+            break;
+        case 0x16:
+            if(IsShiftPressed)
                 printf("U");
-                break;
-            case 0x2F:
+            else
+                printf("u");
+            break;
+        case 0x2F:
+            if(IsShiftPressed)
                 printf("V");
-                break;
-            case 0x11:
+            else
+                printf("v");
+            break;
+        case 0x11:
+            if(IsShiftPressed)
                 printf("W");
-                break;
-            case 0x2D:
+            else
+                printf("w");
+            break;
+        case 0x2D:
+            if(IsShiftPressed)
                 printf("X");
-                break;
-            case 0x15:
+            else
+                printf("x");
+            break;
+        case 0x15:
+            if(IsShiftPressed)
                 printf("Y");
-                break;
-            case 0x2C:
+            else
+                printf("y");
+            break;
+        case 0x2C:
+            if(IsShiftPressed)
                 printf("Z");
-                break;
-            case 0x02:
+            else
+                printf("z");
+            break;
+        case 0x02:
+            if(IsShiftPressed)
+                printf("!");
+            else
                 printf("1");
-                break;
-            case 0x03:
+            break;
+        case 0x03:
+            if(IsShiftPressed)
+                printf("@");
+            else
                 printf("2");
-                break;
-            case 0x04:
+            break;
+        case 0x04:
+            if(IsShiftPressed)
+                printf("#");
+            else
                 printf("3");
-                break;
-            case 0x05:
+            break;
+        case 0x05:
+            if(IsShiftPressed)
+                printf("$");
+            else
                 printf("4");
-                break;
-            case 0x06:
+            break;
+        case 0x06:
+            if(IsShiftPressed)
+                printf("%");
+            else
                 printf("5");
-                break;
-            case 0x07:
+            break;
+        case 0x07:
+            if(IsShiftPressed)
+                printf("^");
+            else
                 printf("6");
-                break;
-            case 0x08:
+            break;
+        case 0x08:
+            if(IsShiftPressed)
+                printf("&");
+            else
                 printf("7");
-                break;
-            case 0x09:
+            break;
+        case 0x09:
+            if(IsShiftPressed)
+                printf("*");
+            else
                 printf("8");
-                break;
-            case 0x0A:
+            break;
+        case 0x0A:
+            if(IsShiftPressed)
+                printf("(");
+            else
                 printf("9");
-                break;
-            case 0x0B:
+            break;
+        case 0x0B:
+            if(IsShiftPressed)
+                printf(")");
+            else
                 printf("0");
-                break;
-            case 0x39:
-                printf(" ");
-                break;
-            case 0x38:
-                printf(" ALT ");
-                break;
-            case 0x1D:
-                printf(" CTRL ");
-                break;
-            case 0x3A:
-                printf(" CAPSLOCK ");
-                break;
-            case 0x36:
-            case 0x2A:
-                printf(" SHIFT ");
-                break;
-            case 0x01:
-                printf(" ESC ");
-                break;
-            case 0x29:
-                printf("`/~");
-                break;
-            case 0x3B:
-                printf(" F1 ");
-                break;
-            case 0x3C:
-                printf(" F2 ");
-                break;
-            case 0x3D:
-                printf(" F3 ");
-                break;
-            case 0x3E:
-                printf(" F4 ");
-                break;
-            case 0x3F:
-                printf(" F5 ");
-                break;
-            case 0x40:
-                printf(" F6 ");
-                break;
-            case 0x41:
-                printf(" F7 ");
-                break;
-            case 0x42:
-                printf(" F8 ");
-                break;
-            case 0x43:
-                printf(" F9 ");
-                break;
-            case 0x44:
-                printf(" F10 ");
-                break;
-            case 0x57:
-                printf(" F11 ");
-                break;
-            case 0x58:
-                printf(" F12 ");
-                break;
-            case 0x47:
-                printf(" Home ");
-                break;
-            case 0x0E:
-                printf(" BACKSPACE ");
-                break;
-            case 0x4F:
-                printf(" End ");
-                break;
-            case 0x52:
-                printf(" INSERT ");
-                break;
-            case 0x53:
-                printf(" DELETE ");
-                break;
-            case 0x5B:
-                printf(" WINKEY ");
-                break;
-            case 0x48:
-                printf(" UP_ARROW ");
-                break;
-            case 0x50:
-                printf(" DOWN_ARROW ");
-                break;
-            case 0x4D:
-                printf(" LEFT_ARROW ");
-                break;
-            case 0x4B:
-                printf(" RIGHT_ARROW ");
-                break;
-            case 0x0C:
-                printf(" -/_ ");
-                break;
-            case 0x0D:
-                printf(" +/= ");
-                break;
-            case 0x0F:
-                printf(" TAB ");
-                break;
-            case 0x49:
-                printf(" PAGE_UP ");
-                break;
-            case 0x51:
-                printf(" PAGE_DOWN ");
-                break;
-            case 0x1C:
-                printf(" ENTER ");
-                break;
-            case 0x35:
-                printf(" //? ");
-                break;
-            case 0x34:
-                printf(" >/. ");
-                break;
-            case 0x33:
-                printf(" </, ");
-                break;
-            case 0x1A:
-                printf(" {/[ ");
-                break;
-            case 0x1B:
-                printf(" }/] ");
-                break;
-            case 0x2B:
-                printf(" |/\\ ");
-                break;
-            case 0x27:
-                printf(" :/;");
-                break;
-            case 0x28:
-                printf(" \"/\' ");
-                break;
-            default:
+            break;
+        case 0x39:
+            printf(" ");
+            break;
+        case 0x38:
+            printf(" ALT ");
+            break;
+        case 0x1D:
+            printf(" CTRL ");
+            break;
+        case 0x3A:
+            printf(" CAPSLOCK ");
+            break;
+        case 0xAA:
+        case 0xB6:
+            IsShiftPressed = false;
+            printf(" SHIFT_DISABLED ");
+            break;
+        case 0x36:
+        case 0x2A:
+            IsShiftPressed = true;
+            printf(" SHIFT_ENABLED ");
+            break;
+        case 0x01:
+            printf(" ESC ");
+            break;
+        case 0x29:
+            if(IsShiftPressed)
+                printf("~");
+            else
+                printf("`");
+            break;
+        case 0x3B:
+            printf(" F1 ");
+            break;
+        case 0x3C:
+            printf(" F2 ");
+            break;
+        case 0x3D:
+            printf(" F3 ");
+            break;
+        case 0x3E:
+            printf(" F4 ");
+            break;
+        case 0x3F:
+            printf(" F5 ");
+            break;
+        case 0x40:
+            printf(" F6 ");
+            break;
+        case 0x41:
+            printf(" F7 ");
+            break;
+        case 0x42:
+            printf(" F8 ");
+            break;
+        case 0x43:
+            printf(" F9 ");
+            break;
+        case 0x44:
+            printf(" F10 ");
+            break;
+        case 0x57:
+            printf(" F11 ");
+            break;
+        case 0x58:
+            printf(" F12 ");
+            break;
+        case 0x47:
+            printf(" Home ");
+            break;
+        case 0x0E:
+            printf(" BACKSPACE ");
+            break;
+        case 0x4F:
+            printf(" End ");
+            break;
+        case 0x52:
+            printf(" INSERT ");
+            break;
+        case 0x53:
+            printf(" DELETE ");
+            break;
+        case 0x5B:
+            printf(" WINKEY ");
+            break;
+        case 0x48:
+            printf(" UP_ARROW ");
+            break;
+        case 0x50:
+            printf(" DOWN_ARROW ");
+            break;
+        case 0x4D:
+            printf(" LEFT_ARROW ");
+            break;
+        case 0x4B:
+            printf(" RIGHT_ARROW ");
+            break;
+        case 0x0C:
+            if(IsShiftPressed)
+                printf("_");
+            else
+                printf("-");
+            break;
+        case 0x0D:
+            if(IsShiftPressed)
+                printf("+");
+            else
+                printf("=");
+            break;
+        case 0x0F:
+            printf("\t");
+            break;
+        case 0x49:
+            printf(" PAGE_UP ");
+            break;
+        case 0x51:
+            printf(" PAGE_DOWN ");
+            break;
+        case 0x1C:
+            printf(" \n ");
+            break;
+        case 0x35:
+            if (IsShiftPressed)
+                printf("?");
+            else
+                printf("/");
+            break;
+        case 0x34:
+            if(IsShiftPressed)
+                printf(">");
+            else
+                printf(".");
+            break;
+        case 0x33:
+            if(IsShiftPressed)
+                printf("<");
+            else
+                printf(",");
+            break;
+        case 0x1A:
+            if(IsShiftPressed)
+                printf("{");
+            else
+                printf("[");
+            break;
+        case 0x1B:
+            if(IsShiftPressed)
+                printf("}");
+            else
+                printf("]");
+            break;
+        case 0x2B:
+            if(IsShiftPressed)
+                printf("|");
+            else
+                printf("\\");
+            break;
+        case 0x27:
+            if(IsShiftPressed)
+                printf(":");
+            else
+                printf(";");
+            break;
+        case 0x28:
+            if(IsShiftPressed)
+                printf("\"");
+            else
+                printf("\'");
+            break;
+        default:
+            if(key < 0x80){
                 char* foo = "KEYBOARD 0x00";
                 char* hex = "0123456789ABCDEF";
                 foo[11] = hex[(key >> 4) & 0x0F];
@@ -271,7 +419,7 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
                 printf(" ");
                 printf(foo);
                 printf(" ");
-        }
+            }
     }
     return esp;
 }
