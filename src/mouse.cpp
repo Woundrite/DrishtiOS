@@ -45,8 +45,6 @@ uint32_t MouseDriver::HandleInterrupt(uint32_t esp){
         VideoMemory[80*y+x] = (VideoMemory[80*y+x] & 0x0F00) << 4
                                     | (VideoMemory[80*y+x] & 0xF000) >> 4
                                     | (VideoMemory[80*y+x] & 0x00FF);
-                            
-        printf("Moving");
 
         x += buffer[1];
         if(x >= 80) x = 79;
