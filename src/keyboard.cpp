@@ -133,6 +133,75 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
             case 0x0B:
                 printf("0");
                 break;
+            case 0x39:
+                printf(" ");
+                break;
+            case 0x38:
+                printf(" ALT ");
+                break;
+            case 0x1D:
+                printf(" CTRL ");
+                break;
+            case 0x3A:
+                printf(" TAB ");
+                break;
+            case 0x2A:
+                printf(" SHIFT ");
+                break;
+            case 0x01:
+                printf(" ESC ");
+                break;
+            case 0x29:
+                printf("`/~");
+                break;
+            case 0x3B:
+                printf(" F1 ");
+                break;
+            case 0x3C:
+                printf(" F2 ");
+                break;
+            case 0x3D:
+                printf(" F3 ");
+                break;
+            case 0x3E:
+                printf(" F4 ");
+                break;
+            case 0x3F:
+                printf(" F5 ");
+                break;
+            case 0x40:
+                printf(" F6 ");
+                break;
+            case 0x41:
+                printf(" F7 ");
+                break;
+            case 0x42:
+                printf(" F8 ");
+                break;
+            case 0x43:
+                printf(" F9 ");
+                break;
+            case 0x44:
+                printf(" F10 ");
+                break;
+            case 0x57:
+                printf(" F11 ");
+                break;
+            // case 0x1E:
+            //     printf(" F12 ");
+            //     break;
+            case 0x47:
+                printf(" Home ");
+                break;
+            case 0x4F:
+                printf(" End ");
+                break;
+            case 0x52:
+                printf(" INSERT ");
+                break;
+            case 0x53:
+                printf(" DELETE ");
+                break;
             default:
                 char* foo = "KEYBOARD 0x00";
                 char* hex = "0123456789ABCDEF";
