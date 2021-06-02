@@ -236,6 +236,9 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
             case 0x51:
                 printf(" PAGE_DOWN ");
                 break;
+            case 0x1C:
+                printf(" ENTER ");
+                break;
             case 0x35:
                 printf(" //? ");
                 break;
