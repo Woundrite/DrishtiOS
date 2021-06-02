@@ -187,9 +187,9 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
             case 0x57:
                 printf(" F11 ");
                 break;
-            // case 0x1E:
-            //     printf(" F12 ");
-            //     break;
+            case 0x58:
+                printf(" F12 ");
+                break;
             case 0x47:
                 printf(" Home ");
                 break;
@@ -201,6 +201,21 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
                 break;
             case 0x53:
                 printf(" DELETE ");
+                break;
+            case 0x5B:
+                printf(" WINKEY ");
+                break;
+            case 0x48:
+                printf(" UP_ARROW ");
+                break;
+            case 0x50:
+                printf(" DOWN_ARROW ");
+                break;
+            case 0x5D:
+                printf(" LEFT_ARROW ");
+                break;
+            case 0x4B:
+                printf(" RIGHT_ARROW ");
                 break;
             default:
                 char* foo = "KEYBOARD 0x00";

@@ -109,7 +109,7 @@ uint32_t InterruptManager::MainHandleInterrupt(uint8_t InterruptNumber, uint32_t
     }
     
     if(InterruptNumber != 0x20){
-        printf(" INTERRUPT!! ");
+        // printf(" INTERRUPT!! ");
     }
 
     if(0x20 <= InterruptNumber && InterruptNumber < 0x30){
