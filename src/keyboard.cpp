@@ -256,12 +256,10 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
         case 0xAA:
         case 0xB6:
             IsShiftPressed = false;
-            printf(" SHIFT_DISABLED ");
             break;
         case 0x36:
         case 0x2A:
             IsShiftPressed = true;
-            printf(" SHIFT_ENABLED ");
             break;
         case 0x01:
             printf(" ESC ");
