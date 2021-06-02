@@ -1,7 +1,7 @@
 --> Potential ideas/features to implement:
         1) Mac OS like central system and web access point
         2) It just works type of system
-        3) Native Support for the Non native support(i.e. windows/linux/macos executables can natively should natively run on this platform)
+        3) Native Support for the Non native softwaret(i.e. windows/linux/macos executables can natively should natively run on this platform)
 
 --> Development
     we will first be making a basic system in 32 bit mode then if that works, we will make the actual 64 bit os.
