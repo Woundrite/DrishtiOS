@@ -193,6 +193,9 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
             case 0x47:
                 printf(" Home ");
                 break;
+            case 0x0E:
+                printf(" BACKSPACE ");
+                break;
             case 0x4F:
                 printf(" End ");
                 break;
