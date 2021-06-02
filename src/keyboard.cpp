@@ -143,7 +143,7 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
                 printf(" CTRL ");
                 break;
             case 0x3A:
-                printf(" TAB ");
+                printf(" CAPSLOCK ");
                 break;
             case 0x2A:
                 printf(" SHIFT ");
@@ -219,6 +219,15 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
                 break;
             case 0x4B:
                 printf(" RIGHT_ARROW ");
+                break;
+            case 0x0C:
+                printf(" -/_ ");
+                break;
+            case 0x0D:
+                printf(" +/= ");
+                break;
+            case 0x0F:
+                printf(" TAB ");
                 break;
             default:
                 char* foo = "KEYBOARD 0x00";
