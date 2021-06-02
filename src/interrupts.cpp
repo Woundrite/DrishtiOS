@@ -3,9 +3,6 @@
 void printf(char* str);
 
 
-
-
-
 InterruptHandler::InterruptHandler(uint8_t InterruptNumber, InterruptManager* interruptManager){
     this->InterruptNumber = InterruptNumber;
     this->interruptManager = interruptManager;
@@ -48,6 +45,7 @@ InterruptManager::InterruptManager(GlobalDescriptorTable* GDT): picMasterCommand
 
     SetInterruptDescriptorTableEntry(0x20, CodeSegment, &HandleInterruptRequest0x00, 0, IDT_INTERRUPT_GATE);
     SetInterruptDescriptorTableEntry(0x21, CodeSegment, &HandleInterruptRequest0x01, 0, IDT_INTERRUPT_GATE);
+    SetInterruptDescriptorTableEntry(0x2C, CodeSegment, &HandleInterruptRequest0x0C, 0, IDT_INTERRUPT_GATE);
 
     picMasterCommand.Write(0x11);
     picSlaveCommand.Write(0x11);
