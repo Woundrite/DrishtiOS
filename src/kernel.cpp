@@ -65,6 +65,41 @@ class PrintKeyboardEventHandler : public KeyboardEventHandler{
         }
 };
 
+class MouseToConsole : public MouseEventHandler{
+
+    int8_t x, y;
+
+    public:
+
+        MouseToConsole(){
+            uint16_t* VideoMemory = (uint16_t*)0xb8000;
+            x = 40;
+            y = 12;
+            VideoMemory[80*y+x] = (VideoMemory[80*y+x] & 0x0F00) << 4
+                                  | (VideoMemory[80*y+x] & 0xF000) >> 4
+                                  | (VideoMemory[80*y+x] & 0x00FF);
+        }
+
+        void OnMouseMove(int xOffset, int yOffset){
+            static uint16_t* VideoMemory = (uint16_t*)0xb8000;
+            
+            VideoMemory[80*y+x] = (VideoMemory[80*y+x] & 0x0F00) << 4
+                                        | (VideoMemory[80*y+x] & 0xF000) >> 4
+                                        | (VideoMemory[80*y+x] & 0x00FF);
+
+            x += xOffset;
+            if(x >= 80) x = 79;
+            if(x < 0) x = 0;
+            y += yOffset;
+            if(y >= 25) y = 24;
+            if(y < 0) y = 0;
+
+            VideoMemory[80*y+x] = (VideoMemory[80*y+x] & 0x0F00) << 4
+                                        | (VideoMemory[80*y+x] & 0xF000) >> 4
+                                        | (VideoMemory[80*y+x] & 0x00FF);
+        }
+};
+
 typedef void (*constructor)();
 extern "C" constructor start_ctors;
 extern "C" constructor end_ctors;
@@ -83,11 +118,12 @@ extern "C" void KernelBoot(void* multiboot_structure, uint32_t BootIdentifier) {
 
     DriverManager driverManager;
 
-    PrintKeyboardEventHandler pkbHandler;
-    KeyboardDriver Keyboard(&Interrupts, &pkbHandler);
+    PrintKeyboardEventHandler KeyboardHandler;
+    KeyboardDriver Keyboard(&Interrupts, &KeyboardHandler);
     driverManager.AddDriver(&Keyboard);
 
-    MouseDriver Mouse(&Interrupts);
+    MouseToConsole MouseHandler;
+    MouseDriver Mouse(&Interrupts, &MouseHandler);
     driverManager.AddDriver(&Mouse);
 
     driverManager.ActivateAll();
