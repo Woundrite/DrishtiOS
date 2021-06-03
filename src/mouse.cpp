@@ -2,6 +2,15 @@
 
 MouseDriver::MouseDriver(InterruptManager* Manager):InterruptHandler(0x2C, Manager), DataPort(0x60), CommandPort(0x64){
 
+}
+MouseDriver::~MouseDriver(){
+
+}
+
+void printf(char*);
+
+void MouseDriver::Activate(){
+
     offset = 0; // crude solution for mouse return problems TODO: find better solution
     buttons = 0;
 
@@ -20,11 +29,6 @@ MouseDriver::MouseDriver(InterruptManager* Manager):InterruptHandler(0x2C, Manag
     DataPort.Write(0xF4);
     DataPort.Read();
 }
-MouseDriver::~MouseDriver(){
-
-}
-
-void printf(char*);
 
 uint32_t MouseDriver::HandleInterrupt(uint32_t esp){
 
