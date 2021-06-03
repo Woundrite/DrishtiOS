@@ -272,7 +272,6 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
                 IsCapsOn = false;
             else
                 IsCapsOn = true;
-        //     Handler->OnKeyDown(' CAPSLOCK ');
             break;
         case 0xAA:
         case 0xB6:
