@@ -35,7 +35,7 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
 
     if(Handler == 0)
         return esp;
-
+    static bool IsCapsOn = false;
     static bool IsShiftPressed = false;
     switch(key){
         case 0x45: //Numlock
@@ -43,157 +43,157 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
         case 0xFA:
             break;
         case 0x1E:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('A');
             else
                 Handler->OnKeyDown('a');
             break;
         case 0x30:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('B');
             else
                 Handler->OnKeyDown('b');
             break;
         case 0x2E:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('C');
             else
                 Handler->OnKeyDown('c');
             break;
         case 0x20:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('D');
             else
                 Handler->OnKeyDown('d');
             break;
         case 0x12:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('E');
             else
                 Handler->OnKeyDown('e');
             break;
         case 0x21:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('F');
             else
                 Handler->OnKeyDown('f');
             break;
         case 0x22:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('G');
             else
                 Handler->OnKeyDown('g');
             break;
         case 0x23:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('H');
             else
                 Handler->OnKeyDown('h');
             break;
         case 0x17:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('I');
             else
                 Handler->OnKeyDown('i');
             break;
         case 0x24:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('J');
             else
                 Handler->OnKeyDown('j');
             break;
         case 0x25:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('K');
             else
                 Handler->OnKeyDown('k');
             break;
         case 0x26:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('L');
             else
                 Handler->OnKeyDown('l');
             break;
         case 0x32:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('M');
             else
                 Handler->OnKeyDown('m');
             break;
         case 0x31:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('N');
             else
                 Handler->OnKeyDown('n');
             break;
         case 0x18:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('O');
             else
                 Handler->OnKeyDown('o');
             break;
         case 0x19:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('P');
             else
                 Handler->OnKeyDown('p');
             break;
         case 0x10:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('Q');
             else
                 Handler->OnKeyDown('q');
             break;
         case 0x13:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('R');
             else
                 Handler->OnKeyDown('r');
             break;
         case 0x1F:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('S');
             else
                 Handler->OnKeyDown('s');
             break;
         case 0x14:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('T');
             else
                 Handler->OnKeyDown('t');
             break;
         case 0x16:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('U');
             else
                 Handler->OnKeyDown('u');
             break;
         case 0x2F:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('V');
             else
                 Handler->OnKeyDown('v');
             break;
         case 0x11:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('W');
             else
                 Handler->OnKeyDown('w');
             break;
         case 0x2D:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('X');
             else
                 Handler->OnKeyDown('x');
             break;
         case 0x15:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('Y');
             else
                 Handler->OnKeyDown('y');
             break;
         case 0x2C:
-            if(IsShiftPressed)
+            if((IsShiftPressed && !IsCapsOn) || (IsCapsOn && !IsShiftPressed))
                 Handler->OnKeyDown('Z');
             else
                 Handler->OnKeyDown('z');
@@ -264,10 +264,14 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
         case 0x38:
         //     Handler->OnKeyDown(' ALT ');
         //     break;
-        // case 0x1D:
+        case 0x1D:
         //     Handler->OnKeyDown(' CTRL ');
-        //     break;
-        // case 0x3A:
+            break;
+        case 0x3A:
+            if(IsCapsOn)
+                IsCapsOn = false;
+            else
+                IsCapsOn = true;
         //     Handler->OnKeyDown(' CAPSLOCK ');
             break;
         case 0xAA:
@@ -278,81 +282,81 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
         case 0x2A:
             IsShiftPressed = true;
             break;
-        // case 0x01:
+        case 0x01:
         //     Handler->OnKeyDown(' ESC ');
-        //     break;
-        // case 0x29:
-        //     if(IsShiftPressed)
-        //         Handler->OnKeyDown('~');
-        //     else
-        //         Handler->OnKeyDown('`');
-        //     break;
-        // case 0x3B:
+            break;
+        case 0x29:
+            if(IsShiftPressed)
+                Handler->OnKeyDown('~');
+            else
+                Handler->OnKeyDown('`');
+            break;
+        case 0x3B:
         //     Handler->OnKeyDown(' F1 ');
         //     break;
-        // case 0x3C:
+        case 0x3C:
         //     Handler->OnKeyDown(' F2 ');
         //     break;
-        // case 0x3D:
+        case 0x3D:
         //     Handler->OnKeyDown(' F3 ');
         //     break;
-        // case 0x3E:
+        case 0x3E:
         //     Handler->OnKeyDown(' F4 ');
         //     break;
-        // case 0x3F:
+        case 0x3F:
         //     Handler->OnKeyDown(' F5 ');
         //     break;
-        // case 0x40:
+        case 0x40:
         //     Handler->OnKeyDown(' F6 ');
         //     break;
-        // case 0x41:
+        case 0x41:
         //     Handler->OnKeyDown(' F7 ');
         //     break;
-        // case 0x42:
+        case 0x42:
         //     Handler->OnKeyDown(' F8 ');
         //     break;
-        // case 0x43:
+        case 0x43:
         //     Handler->OnKeyDown(' F9 ');
         //     break;
-        // case 0x44:
+        case 0x44:
         //     Handler->OnKeyDown(' F10 ');
         //     break;
-        // case 0x57:
+        case 0x57:
         //     Handler->OnKeyDown(' F11 ');
         //     break;
-        // case 0x58:
+        case 0x58:
         //     Handler->OnKeyDown(' F12 ');
         //     break;
-        // case 0x47:
+        case 0x47:
         //     Handler->OnKeyDown(' Home ');
         //     break;
-        // case 0x0E:
+        case 0x0E:
         //     Handler->OnKeyDown(' BACKSPACE ');
         //     break;
-        // case 0x4F:
+        case 0x4F:
         //     Handler->OnKeyDown(' End ');
         //     break;
-        // case 0x52:
+        case 0x52:
         //     Handler->OnKeyDown(' INSERT ');
         //     break;
-        // case 0x53:
+        case 0x53:
         //     Handler->OnKeyDown(' DELETE ');
         //     break;
-        // case 0x5B:
+        case 0x5B:
         //     Handler->OnKeyDown(' WINKEY ');
         //     break;
-        // case 0x48:
+        case 0x48:
         //     Handler->OnKeyDown(' UP_ARROW ');
         //     break;
-        // case 0x50:
+        case 0x50:
         //     Handler->OnKeyDown(' DOWN_ARROW ');
         //     break;
-        // case 0x4D:
+        case 0x4D:
         //     Handler->OnKeyDown(' LEFT_ARROW ');
         //     break;
-        // case 0x4B:
+        case 0x4B:
         //     Handler->OnKeyDown(' RIGHT_ARROW ');
-        //     break;
+            break;
         case 0x0C:
             if(IsShiftPressed)
                 Handler->OnKeyDown('_');
@@ -369,13 +373,13 @@ uint32_t KeyboardDriver::HandleInterrupt(uint32_t esp){
             Handler->OnKeyDown('\t');
             break;
         case 0x49:
-            Handler->OnKeyDown(' PAGE_UP ');
+            // Handler->OnKeyDown(' PAGE_UP ');
             break;
         case 0x51:
-            Handler->OnKeyDown(' PAGE_DOWN ');
+            // Handler->OnKeyDown(' PAGE_DOWN ');
             break;
         case 0x1C:
-            Handler->OnKeyDown(' \n ');
+            Handler->OnKeyDown('\n');
             break;
         case 0x35:
             if (IsShiftPressed)
