@@ -32,5 +32,11 @@
 *.app
 
 
+#Vim Fimes
+*.un~
+*~
+
 # Other
 .vscode/
+# src/testing/
+*.ova
