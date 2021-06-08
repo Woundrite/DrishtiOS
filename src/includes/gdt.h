@@ -1,37 +1,36 @@
-#ifndef __GDT_H
-#define __GDT_H
+#pragma once
 
-#include "types.h"
+#include "Common/types.h"
 
-class GlobalDescriptorTable{
-    public:
-        class SegmentDescriptor {
-            private:
-                uint16_t limit_low;
-                uint16_t base_low;
-                uint8_t base_high;
-                uint8_t type;
-                uint8_t limit_high;
-                uint8_t base_vhigh;
-            public:
-                SegmentDescriptor(uint32_t base, uint32_t limit, uint8_t type);
-                uint32_t Base();
-                uint32_t Limit();
-    }__attribute__((packed));
+namespace Drishti{
+    class GlobalDescriptorTable{
+        public:
+            class SegmentDescriptor {
+                private:
+                    Types::uint16_t limit_low;
+                    Types::uint16_t base_low;
+                    Types::uint8_t base_high;
+                    Types::uint8_t type;
+                    Types::uint8_t limit_high;
+                    Types::uint8_t base_vhigh;
+                public:
+                    SegmentDescriptor(Types::uint32_t base, Types::uint32_t limit, Types::uint8_t type);
+                    Types::uint32_t Base();
+                    Types::uint32_t Limit();
+        }__attribute__((packed));
 
-    private:
-        SegmentDescriptor nullSegmentSelector;
-        SegmentDescriptor unusedSegmentSelector;
-        SegmentDescriptor codeSegmentSelector;
-        SegmentDescriptor dataSegmentSelector;
+        private:
+            SegmentDescriptor nullSegmentSelector;
+            SegmentDescriptor unusedSegmentSelector;
+            SegmentDescriptor codeSegmentSelector;
+            SegmentDescriptor dataSegmentSelector;
 
-    public:
-        GlobalDescriptorTable();
-        ~GlobalDescriptorTable();
+        public:
+            GlobalDescriptorTable();
+            ~GlobalDescriptorTable();
 
-        uint16_t CodeSegmentSelector();
-        uint16_t DataSegmentSelector();
+            Types::uint16_t CodeSegmentSelector();
+            Types::uint16_t DataSegmentSelector();
 
-};
-
-#endif
+    };
+}

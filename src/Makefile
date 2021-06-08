@@ -3,14 +3,30 @@ GCCPARAMS = -m32 -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-excep
 ASPARAMS = --32
 LDPARAMS = -melf_i386
 
-objects = loader.o gdt.o driver.o port.o interruptstubs.o interrupts.o keyboard.o mouse.o kernel.o
- 
+
+objects = obj/loader.o \
+          obj/gdt.o \
+          obj/Drivers/driver.o \
+          obj/HComms/port.o \
+          obj/HComms/interruptstubs.o \
+          obj/HComms/interrupts.o \
+          obj/Drivers/keyboard.o \
+          obj/Drivers/mouse.o \
+          obj/kernel.o
 all: main
 
 %.o: %.cpp
-	gcc $(GCCPARAMS) -c -o $@ $<
+	g++ $(GCCPARAMS) -c -o $@ $<
 
 %.o: %.s
+	as $(ASPARAMS) -o $@ $<
+
+obj/%.o: %.cpp
+	mkdir -p $(@D)
+	g++ $(GCCPARAMS) -c -o $@ $<
+
+obj/%.o: %.s
+	mkdir -p $(@D)
 	as $(ASPARAMS) -o $@ $<
 
 Kernel.bin: linker.ld $(objects)
