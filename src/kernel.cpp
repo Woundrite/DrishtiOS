@@ -129,7 +129,7 @@ namespace Drishti{
         driverManager.AddDriver(&Mouse);
 
         HComms::PeripheralComponentInterconnectController PCIController;
-        PCIController.SelectDrivers(&driverManager);
+        PCIController.SelectDrivers(&driverManager, &Interrupts);
 
         driverManager.ActivateAll();
 
