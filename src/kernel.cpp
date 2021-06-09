@@ -2,6 +2,7 @@
 #include "includes/gdt.h"
 #include "includes/HComms/port.h"
 #include "includes/HComms/interrupts.h"
+#include "includes/HComms/pci.h"
 #include "includes/Drivers/driver.h"
 #include "includes/Drivers/keyboard.h"
 #include "includes/Drivers/mouse.h"
@@ -126,6 +127,9 @@ namespace Drishti{
         MouseToConsole MouseHandler;
         Drivers::MouseDriver Mouse(&Interrupts, &MouseHandler);
         driverManager.AddDriver(&Mouse);
+
+        HComms::PeripheralComponentInterconnectController PCIController;
+        PCIController.SelectDrivers(&driverManager);
 
         driverManager.ActivateAll();
 
