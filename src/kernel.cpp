@@ -6,6 +6,7 @@
 #include "includes/Drivers/driver.h"
 #include "includes/Drivers/keyboard.h"
 #include "includes/Drivers/mouse.h"
+#include "includes/Drivers/vga.h"
 
 namespace Drishti{
     void printf(char* str) {
@@ -131,9 +132,16 @@ namespace Drishti{
         HComms::PeripheralComponentInterconnectController PCIController;
         PCIController.SelectDrivers(&driverManager, &Interrupts);
 
+        Drivers::VideoGraphicsArray vga;
+
         driverManager.ActivateAll();
 
         Interrupts.Activate();
+
+        vga.SetMode(320, 200, 8);
+        for(Types::int32_t y = 0; y < 200; y++)
+            for(Types::int32_t x = 0; x < 320; x++)
+                vga.PutPixel(x, y, 0x00, 0x00, 0xA8);
 
         while(1);
     }
