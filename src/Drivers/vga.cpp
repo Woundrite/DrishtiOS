@@ -27,7 +27,7 @@ namespace Drishti{
             Registers[0x03] = Registers[0x03] | 0x80;
             Registers[0x11] = Registers[0x03] & ~0x80;
 
-            for(Types::uint8_t i =0; i < 25; i++){
+            for(Types::uint8_t i = 0; i < 25; i++){
                 CRTCIndexPort.Write(i);
                 CRTCDataPort.Write(*(Registers++));
             }
@@ -37,7 +37,7 @@ namespace Drishti{
                 GraphicsControllerDataPort.Write(*(Registers++));
             }
 
-            for(Types::uint8_t i =0; i < 21; i++){
+            for(Types::uint8_t i = 0; i < 21; i++){
                 AttributeControllerResetPort.Read();
                 AttributeControllerIndexPort.Write(i);
                 AttributeControllerWritePort.Write(*(Registers++));

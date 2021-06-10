@@ -31,7 +31,7 @@ namespace Drishti{
 				VideoGraphicsArray();
 				~VideoGraphicsArray();
 
-				virtual bool SupportsMode(Types::uint32_t width ,Types::uint32_t height, Types::uint32_t ColorDepth);
+				virtual bool SupportsMode(Types::uint32_t Width ,Types::uint32_t Height, Types::uint32_t ColorDepth);
 				virtual bool SetMode(Types::uint32_t width ,Types::uint32_t height, Types::uint32_t ColorDepth);
 				virtual void PutPixel(Types::uint32_t X, Types::uint32_t Y, Types::uint8_t R, Types::uint8_t G, Types::uint8_t B);
 				virtual void PutPixel(Types::uint32_t X, Types::uint32_t Y, Types::uint8_t ColorIndex);
