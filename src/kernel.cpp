@@ -139,8 +139,8 @@ namespace Drishti{
         Interrupts.Activate();
 
         vga.SetMode(320, 200, 8);
-        for(Types::uint8_t y = 0; y < 200; y++)
-            for(Types::uint8_t x = 0; x < 320; x++)
+        for(Types::int32_t y = 0; y < 200; y++)
+            for(Types::int32_t x = 0; x < 320; x++)
                 vga.PutPixel(x, y, 0x00, 0x00, 0xA8);
 
         while(1);
