@@ -35,6 +35,8 @@ namespace Drishti{
 				virtual bool SetMode(Types::uint32_t width ,Types::uint32_t height, Types::uint32_t ColorDepth);
 				virtual void PutPixel(Types::uint32_t X, Types::uint32_t Y, Types::uint8_t R, Types::uint8_t G, Types::uint8_t B);
 				virtual void PutPixel(Types::uint32_t X, Types::uint32_t Y, Types::uint8_t ColorIndex);
+				
+				virtual void FillRectangle(Types::uint32_t X, Types::uint32_t Y, Types::uint32_t W, Types::uint32_t H, Types::uint8_t R, Types::uint8_t G, Types::uint8_t B);
 		};
 	}
 }
