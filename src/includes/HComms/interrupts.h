@@ -6,100 +6,100 @@
 
 namespace Drishti
 {
-    namespace HComms{
-        class InterruptManager;
+	namespace HComms{
+		class InterruptManager;
 
-        class InterruptHandler{
-            protected:
-                Types::uint8_t InterruptNumber;
-                InterruptManager* interruptManager;
+		class InterruptHandler{
+			protected:
+				Types::uint8_t InterruptNumber;
+				InterruptManager* interruptManager;
 
-                InterruptHandler(Types::uint8_t InterruptNumber, InterruptManager* interruptManager);
-                ~InterruptHandler();
-            public:
-                virtual Types::uint32_t HandleInterrupt(Types::uint32_t esp);
-        };
+				InterruptHandler(Types::uint8_t InterruptNumber, InterruptManager* interruptManager);
+				~InterruptHandler();
+			public:
+				virtual Types::uint32_t HandleInterrupt(Types::uint32_t esp);
+		};
 
-        class InterruptManager{
-            friend class InterruptHandler;
-            protected:
+		class InterruptManager{
+			friend class InterruptHandler;
+			protected:
 
-                static InterruptManager* ActiveInterruptManager;
-                InterruptHandler* handlers[256];
+				static InterruptManager* ActiveInterruptManager;
+				InterruptHandler* handlers[256];
 
-                struct GateDescriptor{
-                    Types::uint16_t HandlerAddressLowBits;
-                    Types::uint16_t GDT_CodeSegmentSelector;
-                    Types::uint8_t reserved;
-                    Types::uint8_t access;
-                    Types::uint16_t HandlerAddressHighBits;
+				struct GateDescriptor{
+					Types::uint16_t HandlerAddressLowBits;
+					Types::uint16_t GDT_CodeSegmentSelector;
+					Types::uint8_t reserved;
+					Types::uint8_t access;
+					Types::uint16_t HandlerAddressHighBits;
 
-                }__attribute__((packed));
+				}__attribute__((packed));
 
-                static GateDescriptor InterruptDescriptorTable[256];
+				static GateDescriptor InterruptDescriptorTable[256];
 
-                struct InterruptDescriptorTablePointer{
-                    Types::uint16_t size;
-                    Types::uint32_t base;
-                }__attribute__((packed));
+				struct InterruptDescriptorTablePointer{
+					Types::uint16_t size;
+					Types::uint32_t base;
+				}__attribute__((packed));
 
-                static void SetInterruptDescriptorTableEntry(Types::uint8_t interruptNumber, Types::uint16_t codeSegmentSelectorOffset, void (*handler)(), Types::uint8_t DescriptorPrevelageLevel, Types::uint8_t DescriptorType);
+				static void SetInterruptDescriptorTableEntry(Types::uint8_t interruptNumber, Types::uint16_t codeSegmentSelectorOffset, void (*handler)(), Types::uint8_t DescriptorPrevelageLevel, Types::uint8_t DescriptorType);
 
-                Port8BitSlow picMasterCommand;
-                Port8BitSlow picMasterData;
-                Port8BitSlow picSlaveCommand;
-                Port8BitSlow picSlaveData;
-            public:
-                InterruptManager(GlobalDescriptorTable* GDT);
-                ~InterruptManager();
+				Port8BitSlow picMasterCommand;
+				Port8BitSlow picMasterData;
+				Port8BitSlow picSlaveCommand;
+				Port8BitSlow picSlaveData;
+			public:
+				InterruptManager(GlobalDescriptorTable* GDT);
+				~InterruptManager();
 
-                void Activate();
-                void Deactivate();
+				void Activate();
+				void Deactivate();
 
-                static Types::uint32_t HandleInterrupt(Types::uint8_t InterruptNumber, Types::uint32_t esp);
-                Types::uint32_t MainHandleInterrupt(Types::uint8_t InterruptNumber, Types::uint32_t esp);
+				static Types::uint32_t HandleInterrupt(Types::uint8_t InterruptNumber, Types::uint32_t esp);
+				Types::uint32_t MainHandleInterrupt(Types::uint8_t InterruptNumber, Types::uint32_t esp);
 
-                static void IgnoreInterruptRequest();
+				static void IgnoreInterruptRequest();
 
-                static void HandleInterruptRequest0x00();
-                static void HandleInterruptRequest0x01();
-                static void HandleInterruptRequest0x02();
-                static void HandleInterruptRequest0x03();
-                static void HandleInterruptRequest0x04();
-                static void HandleInterruptRequest0x05();
-                static void HandleInterruptRequest0x06();
-                static void HandleInterruptRequest0x07();
-                static void HandleInterruptRequest0x08();
-                static void HandleInterruptRequest0x09();
-                static void HandleInterruptRequest0x0A();
-                static void HandleInterruptRequest0x0B();
-                static void HandleInterruptRequest0x0C();
-                static void HandleInterruptRequest0x0D();
-                static void HandleInterruptRequest0x0E();
-                static void HandleInterruptRequest0x0F();
-                static void HandleInterruptRequest0x31();
+				static void HandleInterruptRequest0x00();
+				static void HandleInterruptRequest0x01();
+				static void HandleInterruptRequest0x02();
+				static void HandleInterruptRequest0x03();
+				static void HandleInterruptRequest0x04();
+				static void HandleInterruptRequest0x05();
+				static void HandleInterruptRequest0x06();
+				static void HandleInterruptRequest0x07();
+				static void HandleInterruptRequest0x08();
+				static void HandleInterruptRequest0x09();
+				static void HandleInterruptRequest0x0A();
+				static void HandleInterruptRequest0x0B();
+				static void HandleInterruptRequest0x0C();
+				static void HandleInterruptRequest0x0D();
+				static void HandleInterruptRequest0x0E();
+				static void HandleInterruptRequest0x0F();
+				static void HandleInterruptRequest0x31();
 
 
-                static void HandleException0x00();
-                static void HandleException0x01();
-                static void HandleException0x02();
-                static void HandleException0x03();
-                static void HandleException0x04();
-                static void HandleException0x05();
-                static void HandleException0x06();
-                static void HandleException0x07();
-                static void HandleException0x08();
-                static void HandleException0x09();
-                static void HandleException0x0A();
-                static void HandleException0x0B();
-                static void HandleException0x0C();
-                static void HandleException0x0D();
-                static void HandleException0x0E();
-                static void HandleException0x0F();
-                static void HandleException0x10();
-                static void HandleException0x11();
-                static void HandleException0x12();
-                static void HandleException0x13();
-        };
-    }
+				static void HandleException0x00();
+				static void HandleException0x01();
+				static void HandleException0x02();
+				static void HandleException0x03();
+				static void HandleException0x04();
+				static void HandleException0x05();
+				static void HandleException0x06();
+				static void HandleException0x07();
+				static void HandleException0x08();
+				static void HandleException0x09();
+				static void HandleException0x0A();
+				static void HandleException0x0B();
+				static void HandleException0x0C();
+				static void HandleException0x0D();
+				static void HandleException0x0E();
+				static void HandleException0x0F();
+				static void HandleException0x10();
+				static void HandleException0x11();
+				static void HandleException0x12();
+				static void HandleException0x13();
+		};
+	}
 }

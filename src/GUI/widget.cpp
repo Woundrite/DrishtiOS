@@ -35,10 +35,15 @@ namespace Drishti{
 			ModelToScreen(x, y);
 			GC->FillRectangle(x, y, W, H, R, G, B);
 		}
-		void Widget::OnMouseButtonDown(Types::int32_t X, Types::int32_t Y){
+
+		bool Widget::ContainsCoordinate(Types::int32_t X, Types::int32_t Y){
+			return this->X <= X && X < this->X + this->W && this->Y <= Y && Y < this->Y + this->H;
+		}
+
+		void Widget::OnMouseButtonDown(Types::int32_t X, Types::int32_t Y, Types::uint8_t Button){
 			GetFocus(this);
 		}
-		void Widget::OnMouseButtonUp(Types::int32_t X, Types::int32_t Y){
+		void Widget::OnMouseButtonUp(Types::int32_t X, Types::int32_t Y, Types::uint8_t Button){
 			
 		}
 		void Widget::OnMouseMove(Types::int32_t OldX, Types::int32_t OldY, Types::int32_t NewX, Types::int32_t NewY){
@@ -52,7 +57,7 @@ namespace Drishti{
 			
 		}
 
-			CompositeWidget::CompositeWidget(Widget* Parent, Types::int32_t X, Types::int32_t Y, Types::int32_t W, Types::int32_t H, Types::uint8_t R, Types::uint8_t G, Types::uint8_t B){
+			CompositeWidget::CompositeWidget(Widget* Parent, Types::int32_t X, Types::int32_t Y, Types::int32_t W, Types::int32_t H, Types::uint8_t R, Types::uint8_t G, Types::uint8_t B): Widget(Parent, X, Y, W, H, R, G, B){
 				FocussedChild = 0;
 				NumChildren = 0;
 			}
@@ -72,18 +77,19 @@ namespace Drishti{
 					Children[i]->Draw(GC);
 				}
 			}
-			void CompositeWidget::OnMouseButtonDown(Types::int32_t X, Types::int32_t Y){
+
+			void CompositeWidget::OnMouseButtonDown(Types::int32_t X, Types::int32_t Y, Types::uint8_t Button){
 				for(int i = 0; i < NumChildren; ++i){
 					if(Children[i]->ContainsCoordinate(X - this->X, Y - this->Y)){
-						Children[i]->OnMouseButtonDown(X - this->X, Y - this->Y);
+						Children[i]->OnMouseButtonDown(X - this->X, Y - this->Y, Button);
 						break;
 					}
 				}
 			}
-			void CompositeWidget::OnMouseButtonUp(Types::int32_t X, Types::int32_t Y){
+			void CompositeWidget::OnMouseButtonUp(Types::int32_t X, Types::int32_t Y, Types::uint8_t Button){
 				for(int i = 0; i < NumChildren; ++i){
 					if(Children[i]->ContainsCoordinate(X - this->X, Y - this->Y)){
-						Children[i]->OnMouseButtonUp(X - this->X, Y - this->Y);
+						Children[i]->OnMouseButtonUp(X - this->X, Y - this->Y, Button);
 						break;
 					}
 				}
@@ -108,12 +114,12 @@ namespace Drishti{
 
 			void CompositeWidget::OnKeyDown(char* str){
 				if(FocussedChild != 0){
-					FocussedChild->OnKeyDown(X, Y);
+					FocussedChild->OnKeyDown(str);
 				}
 			}
 			void CompositeWidget::OnKeyUp(char* str){
 				if(FocussedChild != 0){
-					FocussedChild->OnKeyUp(X, Y);
+					FocussedChild->OnKeyUp(str);
 				}
 			}
 		
