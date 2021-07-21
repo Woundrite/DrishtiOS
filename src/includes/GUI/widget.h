@@ -3,11 +3,11 @@
 #include "../Common/types.h"
 #include "../Common/GraphicsContext.h"
 #include "../Drivers/vga.h"
-
+#include "../Drivers/keyboard.h"
 namespace Drishti{
     namespace GUI{
 
-        class Widget{
+        class Widget: public Drivers::KeyBoardEventHandler{
             protected:
                 Widget* Parent;
                 Types::int32_t X;

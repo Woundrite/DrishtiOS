@@ -14,6 +14,8 @@ objects = obj/loader.o \
           obj/Drivers/keyboard.o \
           obj/Drivers/mouse.o \
 		  obj/Drivers/vga.o \
+		  obj/GUI/widget.o \
+		  obj/GUI/desktop.o \
           obj/kernel.o
 all: main
 

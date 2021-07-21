@@ -94,8 +94,12 @@ namespace Drishti{
         }
 
         Types::uint8_t VideoGraphicsArray::GetColorIndex(Types::uint8_t R, Types::uint8_t G, Types::uint8_t B){
-            if(R == 0x00 && G == 0x00 && B == 0xA8)
-                return 0x01;
+            if(R == 0x00 && G == 0x00 && B == 0xA8) return 0x01;
+            if(R == 0x00 && G == 0x00 && B == 0xA8) return 0x01;
+            if(R == 0x00 && G == 0x00 && B == 0xA8) return 0x01;
+            if(R == 0x00 && G == 0x00 && B == 0xA8) return 0x01;
+            if(R == 0x00 && G == 0x00 && B == 0xA8) return 0x01;
+            if(R == 0x00 && G == 0x00 && B == 0xA8) return 0x01;
         }
 
         void VideoGraphicsArray::PutPixel(Types::uint32_t X, Types::uint32_t Y, Types::uint8_t R, Types::uint8_t G, Types::uint8_t B){

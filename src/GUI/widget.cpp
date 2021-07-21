@@ -2,7 +2,7 @@
 
 namespace Drishti{
 	namespace GUI{
-		Widget::Widget(Widget* Parent, Types::int32_t X, Types::int32_t Y, Types::int32_t W, Types::int32_t H, Types::uint8_t R, Types::uint8_t G, Types::uint8_t B){
+		Widget::Widget(Widget* Parent, Types::int32_t X, Types::int32_t Y, Types::int32_t W, Types::int32_t H, Types::uint8_t R, Types::uint8_t G, Types::uint8_t B): KeyboardEventHandler(){
 			this->Parent = Parent;
 			this->X = X;
 			this->Y = Y;

@@ -5,6 +5,6 @@
 
 namespace Drishti{
     namespace Graphics{
-        typedef GraphicsContext Drivers::VideoGraphicsArray;
+        typedef Drivers::VideoGraphicsArray GraphicsContext;
     }
 }

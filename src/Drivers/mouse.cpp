@@ -63,7 +63,7 @@ namespace Drishti{
             if(offset == 0){
                 if(buffer[1] != 0 || buffer[2] != 0){
 
-                    Handler->OnMouseMove(buffer[1], -buffer[2]);
+                    Handler->OnMouseMove((int)buffer[1], -((int)buffer[2]));
                 }
             }
 
