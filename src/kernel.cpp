@@ -146,6 +146,8 @@ namespace Drishti{
 		vga.SetMode(320, 200, 8);
 		desktop.Draw(&vga);
 
-		while(1);
+		while(1){
+			desktop.Draw(&vga);
+		}
 	}
 }
