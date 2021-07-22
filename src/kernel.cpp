@@ -141,10 +141,10 @@ namespace Drishti{
 
 		driverManager.ActivateAll();
 
-		Interrupts.Activate();
-
 		vga.SetMode(320, 200, 8);
 		desktop.Draw(&vga);
+
+		Interrupts.Activate();
 
 		while(1){
 			desktop.Draw(&vga);
