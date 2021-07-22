@@ -13,7 +13,7 @@ namespace Drishti{
 		void Desktop::Draw(GraphicsContext* GC){
 			CompositeWidget::Draw(GC);
 
-			for(int i = 0; i<4; i++){
+			for(int i = 0; i<10; i++){
 				GC->PutPixel(MouseX-i, MouseY, 0xFF, 0xFF, 0xFF);
 				GC->PutPixel(MouseX+i, MouseY, 0xFF, 0xFF, 0xFF);
 				GC->PutPixel(MouseX, MouseY-i, 0xFF, 0xFF, 0xFF);
