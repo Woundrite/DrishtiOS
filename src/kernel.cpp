@@ -120,7 +120,7 @@ namespace Drishti{
 
 		printf("\n[System]: Initializing Hardware\n");
 
-		GUI::Desktop desktop(320, 200, 0x00, 0x00, 0xA8);
+		GUI::Desktop desktop(320, 200, 0x00, 0x00, 0x00);
 
 		Drivers::DriverManager driverManager;
 
